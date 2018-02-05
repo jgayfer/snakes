@@ -63,8 +63,12 @@ class Board
     private
     def print_row(row_numbers)
         row_numbers.each do |num|
-            padded_num_str = num.to_s.ljust(3, ' ')
-            print "|#{padded_num_str}"
+            if (num - 1) == @current_pos
+                padded_cell_str = 'X'.ljust(3, ' ')
+            else
+                padded_cell_str = num.to_s.ljust(3, ' ')
+            end
+            print "|#{padded_cell_str}"
         end
         puts '|'
     end
@@ -95,3 +99,6 @@ class Board
         end
     end
 end
+
+b = Board.new(10)
+b.display_board
