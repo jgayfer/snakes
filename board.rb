@@ -36,6 +36,12 @@ class Board
         end
     end
 
+    def win_condition
+        if @current_pos == (@num_cells - 1)
+           return true 
+        end
+    end
+
     private
     def current_pos_is_snake
         if @snakes[@current_pos]
