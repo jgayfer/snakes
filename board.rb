@@ -4,7 +4,8 @@ class Board
         @dimension = dimension
         @num_cells = dimension ** 2
         @current_pos = 0
-        @snakes_ladders = Array.new(@num_cells)
+        @snakes = Array.new(@num_cells)
+        @ladders = Array.new(@num_cells)
 
         num_snakes = num_ladders = (dimension / 2).ceil 
         generate_snakes(num_snakes)
@@ -12,6 +13,14 @@ class Board
     end
 
     def display_board
+        puts "Snakes & Ladders"
+        print_cells
+        print_ladders
+        print_snakes
+    end
+
+    private
+    def print_cells
         (0...@dimension).reverse_each do |n|
             start_num = (n * @dimension) + 1
             end_num = (n * @dimension) + @dimension
@@ -26,6 +35,29 @@ class Board
             print_row(row_numbers)
         end
         print_dashed_line
+        puts
+    end
+
+    private
+    def print_ladders
+        puts "Ladders"
+        @ladders.each_with_index do |end_cell, start_cell|
+            if end_cell
+                puts "#{start_cell} --> #{end_cell}"
+            end
+        end
+        puts
+    end
+
+    private
+    def print_snakes
+        puts "Snakes"
+        @snakes.each_with_index do |end_cell, start_cell|
+            if end_cell
+                puts "#{start_cell} --> #{end_cell}"
+            end
+        end
+        puts
     end
 
     private
@@ -50,7 +82,7 @@ class Board
         num_snakes.times do
             start_cell = rand(1...(@num_cells - 1))
             end_cell = rand(0...start_cell)
-            @snakes_ladders[start_cell] = end_cell
+            @snakes[start_cell] = end_cell
         end
     end
 
@@ -59,7 +91,7 @@ class Board
         num_ladders.times do
             start_cell = rand(1...(@num_cells - 2))
             end_cell = rand((start_cell + 1)...(@num_cells - 1))
-            @snakes_ladders[start_cell] = end_cell
+            @ladders[start_cell] = end_cell
         end
     end
 end
