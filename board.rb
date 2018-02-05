@@ -43,7 +43,7 @@ class Board
         puts "Ladders"
         @ladders.each_with_index do |end_cell, start_cell|
             if end_cell
-                puts "#{start_cell} --> #{end_cell}"
+                puts "#{start_cell + 1} --> #{end_cell + 1}"
             end
         end
         puts
@@ -54,7 +54,7 @@ class Board
         puts "Snakes"
         @snakes.each_with_index do |end_cell, start_cell|
             if end_cell
-                puts "#{start_cell} --> #{end_cell}"
+                puts "#{start_cell + 1} --> #{end_cell + 1}"
             end
         end
         puts
@@ -99,6 +99,3 @@ class Board
         end
     end
 end
-
-b = Board.new(10)
-b.display_board
