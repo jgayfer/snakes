@@ -19,6 +19,37 @@ class Board
         print_snakes
     end
 
+    def make_move(num_spaces)
+        unless num_spaces > 0
+            raise ArgumentError.new("Number must be greater than zero")
+        end
+
+        @current_pos += num_spaces
+        if current_pos_is_ladder
+            @current_pos = @ladders[@current_pos]
+        elsif current_pos_is_snake
+            @current_pos = @snakes[@current_pos]
+        end
+
+        if @current_pos > (@num_cells - 1)
+            @current_pos = (@num_cells - 1)
+        end
+    end
+
+    private
+    def current_pos_is_snake
+        if @snakes[@current_pos]
+            return true
+        end
+    end
+
+    private
+    def current_pos_is_ladder
+        if @ladders[@current_pos]
+            return true
+        end
+    end
+
     private
     def print_cells
         (0...@dimension).reverse_each do |n|
