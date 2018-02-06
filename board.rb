@@ -13,7 +13,6 @@ class Board
     end
 
     def display_board
-        puts "Snakes & Ladders"
         print_cells
         print_ladders
         print_snakes
