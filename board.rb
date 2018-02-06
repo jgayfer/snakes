@@ -25,10 +25,14 @@ class Board
   end
 
   def win_condition
-    @current_pos == (@num_cells - 1)
+    @current_pos == end_of_board
   end
 
   private
+
+  def end_of_board
+    @num_cells - 1
+  end
 
   def update_current_pos(num_spaces)
     @current_pos += num_spaces
@@ -39,7 +43,7 @@ class Board
       @current_pos = @snakes[@current_pos]
     end
 
-    @current_pos = (@num_cells - 1) if @current_pos > (@num_cells - 1)
+    @current_pos = end_of_board if @current_pos > end_of_board
   end
 
   def current_pos_is_snake
