@@ -25,7 +25,7 @@ class Board
   end
 
   def win_condition
-    true if @current_pos == (@num_cells - 1)
+    @current_pos == (@num_cells - 1)
   end
 
   private
