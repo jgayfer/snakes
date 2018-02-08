@@ -10,7 +10,7 @@ class Board
     generate_ladders(num_ladders)
   end
 
-  def display_board
+  def display
     print_cells
     print_ladders
     print_snakes
