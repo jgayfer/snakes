@@ -15,8 +15,7 @@ class Game
   end
 
   def move_next_player(num_spaces)
-    new_position = @player_positions[@next_player_index] + num_spaces
-    @player_positions[@next_player_index] = @board.cell_destination(new_position)
+    update_player_position(num_spaces)
     update_next_player_index
     update_previous_player_index
   end
@@ -30,13 +29,23 @@ class Game
   end
 
   def last_move_was_a_win
-    @board.cell_is_end_of_board(@player_positions[@previous_player_index])
+    @player_positions[@previous_player_index] == @board.end_of_board
+      if @previous_player_index
   end
 
   private
 
   def player_position_hash
     Hash[@players.zip(@player_positions)]
+  end
+
+  def update_player_position(num_spaces)
+    new_position = @player_positions[@next_player_index] + num_spaces
+    @player_positions[@next_player_index] = @board.cell_destination(new_position)
+
+    if @player_positions[@next_player_index] > @board.end_of_board
+      @player_positions[@next_player_index] = @board.end_of_board
+    end
   end
 
   def update_next_player_index

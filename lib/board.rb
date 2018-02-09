@@ -16,8 +16,8 @@ class Board
     print_snakes
   end
 
-  def cell_is_end_of_board(cell_index)
-    return true if (cell_index + 1) == @num_cells
+  def end_of_board
+    @num_cells - 1
   end
 
   def cell_is_snake(cell_index)
