@@ -77,11 +77,7 @@ class Board
 
   def print_row(row_numbers)
     row_numbers.each do |num|
-      padded_cell_str = if (num - 1) == @current_pos
-                          'X'.ljust(3, ' ')
-                        else
-                          num.to_s.ljust(3, ' ')
-                        end
+      padded_cell_str = num.to_s.ljust(3, ' ')
       print "|#{padded_cell_str}"
     end
     puts '|'
