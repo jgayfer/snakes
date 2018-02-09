@@ -95,7 +95,7 @@ class Board
       player_position_hash.select { |_, v| v == cell_index }.keys
 
     if !players_at_this_index.empty?
-      players_at_this_index.map(&:symbol_str).join('').ljust(3, ' ')
+      players_at_this_index.map(&:symbol).join('').ljust(3, ' ')
     else
       cell_num.to_s.ljust(3, ' ')
     end
