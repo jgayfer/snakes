@@ -20,17 +20,16 @@ class Game
     update_previous_player_index
   end
 
-  def next_player_str
-    @players[@next_player_index].name
+  def next_player
+    @players[@next_player_index]
   end
 
-  def previous_player_str
-    @players[@previous_player_index].name if @previous_player_index
+  def previous_player
+    @players[@previous_player_index] if @previous_player_index
   end
 
   def last_move_was_a_win
-    @player_positions[@previous_player_index] == @board.end_of_board
-      if @previous_player_index
+    @player_positions[@previous_player_index] == @board.end_of_board if @previous_player_index
   end
 
   private

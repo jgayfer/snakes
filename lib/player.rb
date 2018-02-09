@@ -8,4 +8,8 @@ class Player
   def symbol_str
     @name[0].upcase
   end
+
+  def to_s
+    @name
+  end
 end
