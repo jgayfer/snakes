@@ -2,7 +2,6 @@ class Board
   def initialize(dimension)
     @dimension = dimension
     @num_cells = dimension**2
-    @current_pos = 0
     @snakes = Array.new(@num_cells)
     @ladders = Array.new(@num_cells)
 
@@ -11,48 +10,35 @@ class Board
     generate_ladders(num_ladders)
   end
 
-  def display_board
-    print_cells
+  def display(player_position_hash)
+    print_cells(player_position_hash)
     print_ladders
     print_snakes
   end
-
-  def make_move(num_spaces)
-    unless num_spaces > 0
-      raise ArgumentError, 'Number must be greater than zero'
-    end
-    update_current_pos(num_spaces)
-  end
-
-  def win_condition
-    @current_pos == end_of_board
-  end
-
-  private
 
   def end_of_board
     @num_cells - 1
   end
 
-  def update_current_pos(num_spaces)
-    @current_pos += num_spaces
+  def cell_is_snake(cell_index)
+    return true if @snakes[cell_index]
+  end
 
-    if current_pos_is_ladder
-      @current_pos = @ladders[@current_pos]
-    elsif current_pos_is_snake
-      @current_pos = @snakes[@current_pos]
+  def cell_is_ladder(cell_index)
+    return true if @ladders[cell_index]
+  end
+
+  def cell_destination(cell_index)
+    if cell_is_ladder(cell_index)
+      @ladders[cell_index]
+    elsif cell_is_snake(cell_index)
+      @snakes[cell_index]
+    else
+      cell_index
     end
-
-    @current_pos = end_of_board if @current_pos > end_of_board
   end
 
-  def current_pos_is_snake
-    true if @snakes[@current_pos]
-  end
-
-  def current_pos_is_ladder
-    true if @ladders[@current_pos]
-  end
+  private
 
   def get_row_nums(n)
     start_num = (n * @dimension) + 1
@@ -63,11 +49,11 @@ class Board
     num_array
   end
 
-  def print_cells
+  def print_cells(player_position_hash)
     (0...@dimension).reverse_each do |n|
       print_dashed_line
       row_nums = get_row_nums(n)
-      print_row(row_nums)
+      print_row(row_nums, player_position_hash)
     end
     print_dashed_line
     puts
@@ -89,14 +75,9 @@ class Board
     puts
   end
 
-  def print_row(row_numbers)
+  def print_row(row_numbers, player_position_hash)
     row_numbers.each do |num|
-      padded_cell_str = if (num - 1) == @current_pos
-                          'X'.ljust(3, ' ')
-                        else
-                          num.to_s.ljust(3, ' ')
-                        end
-      print "|#{padded_cell_str}"
+      print "|#{format_cell(num, player_position_hash)}"
     end
     puts '|'
   end
@@ -106,6 +87,18 @@ class Board
       print '-'
     end
     puts '-'
+  end
+
+  def format_cell(cell_num, player_position_hash)
+    cell_index = cell_num - 1
+    players_at_this_index =
+      player_position_hash.select { |_, v| v == cell_index }.keys
+
+    if !players_at_this_index.empty?
+      players_at_this_index.map(&:symbol).join('').ljust(3, ' ')
+    else
+      cell_num.to_s.ljust(3, ' ')
+    end
   end
 
   def generate_snakes(num_snakes)
