@@ -48,7 +48,7 @@ class Game
   end
 
   def update_next_player_index
-    if (@next_player_index + 1) == num_of_players
+    if ((@next_player_index + 1) % num_of_players).zero?
       @next_player_index = 0
     else
       @next_player_index += 1
@@ -61,7 +61,7 @@ class Game
       return
     end
 
-    if (@previous_player_index + 1) == num_of_players
+    if ((@previous_player_index + 1) % num_of_players).zero?
       @previous_player_index = 0
     else
       @previous_player_index += 1
