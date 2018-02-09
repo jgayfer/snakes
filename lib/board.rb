@@ -10,8 +10,8 @@ class Board
     generate_ladders(num_ladders)
   end
 
-  def display
-    print_cells
+  def display(player_position_hash)
+    print_cells(player_position_hash)
     print_ladders
     print_snakes
   end
@@ -49,11 +49,11 @@ class Board
     num_array
   end
 
-  def print_cells
+  def print_cells(player_position_hash)
     (0...@dimension).reverse_each do |n|
       print_dashed_line
       row_nums = get_row_nums(n)
-      print_row(row_nums)
+      print_row(row_nums, player_position_hash)
     end
     print_dashed_line
     puts
@@ -75,10 +75,9 @@ class Board
     puts
   end
 
-  def print_row(row_numbers)
+  def print_row(row_numbers, player_position_hash)
     row_numbers.each do |num|
-      padded_cell_str = num.to_s.ljust(3, ' ')
-      print "|#{padded_cell_str}"
+      print "|#{format_cell(num, player_position_hash)}"
     end
     puts '|'
   end
@@ -88,6 +87,18 @@ class Board
       print '-'
     end
     puts '-'
+  end
+
+  def format_cell(cell_num, player_position_hash)
+    cell_index = cell_num - 1
+    players_at_this_index =
+      player_position_hash.select { |_, v| v == cell_index }.keys
+
+    if !players_at_this_index.empty?
+      players_at_this_index.map(&:symbol_str).join('').ljust(3, ' ')
+    else
+      cell_num.to_s.ljust(3, ' ')
+    end
   end
 
   def generate_snakes(num_snakes)

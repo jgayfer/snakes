@@ -11,7 +11,7 @@ class Game
   end
 
   def display_board
-    @board.display
+    @board.display(player_position_hash)
   end
 
   def move_next_player(num_spaces)
@@ -34,6 +34,10 @@ class Game
   end
 
   private
+
+  def player_position_hash
+    Hash[@players.zip(@player_positions)]
+  end
 
   def update_next_player_index
     if (@next_player_index + 1) == num_of_players
