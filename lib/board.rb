@@ -1,33 +1,14 @@
 class Board
-  def initialize(dimension)
-    @dimension = dimension
-    @num_cells = dimension**2
-    @snakes = Array.new(@num_cells)
-    @ladders = Array.new(@num_cells)
+  attr_reader :winning_index
 
+  def initialize(transitions, dimension)
+    @winning_index = dimension**2 - 1
+    @transitions = transitions
   end
 
-
-  def end_of_board
-    @num_cells - 1
+  def compute_destination_index(start_index)
+    transition = @transitions.find { |t| t.start_index == start_index }
+    new_index = transition ? transitions.dest_index : start_index
+    new_index > @winning_index ? @winning_index : new_index
   end
-
-  def cell_is_snake(cell_index)
-    return true if @snakes[cell_index]
-  end
-
-  def cell_is_ladder(cell_index)
-    return true if @ladders[cell_index]
-  end
-
-  def cell_destination(cell_index)
-    if cell_is_ladder(cell_index)
-      @ladders[cell_index]
-    elsif cell_is_snake(cell_index)
-      @snakes[cell_index]
-    else
-      cell_index
-    end
-  end
-
 end
