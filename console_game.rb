@@ -1,16 +1,20 @@
 require_relative 'lib/game'
+require_relative 'lib/board'
+require_relative 'lib/player'
+require_relative 'lib/player_state'
+require_relative 'lib/transition'
 
-g = Game.new(10, %w[James Sebastian Clarke])
+players = [Player.new('James'), Player.new('Sebastian')]
+player_states = players.map { |player| PlayerState.new(player) }
+board = Board.new([], 10)
+g = Game.new(board, player_states)
 
 until g.last_move_was_a_win
-  g.display_board
   print "It's your turn #{g.next_player}! Press any key to roll the dice: "
   gets.chomp
   move = rand(1..6)
   puts "You rolled a #{move}"
-  puts
   g.move_next_player(move)
 end
 
-g.display_board
 puts "#{g.previous_player} wins!"
