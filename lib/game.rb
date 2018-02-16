@@ -1,12 +1,14 @@
 require_relative 'player_state'
 
 class Game
-  def initialize(board, player_states)
+  def initialize(board, player_states, rules)
     @board = board
     @player_states = player_states
+    @rules = rules
   end
 
   def move_next_player(num_spaces)
+    return puts 'Invalid roll' unless @rules.roll_is_valid(num_spaces)
     current_index = current_state(next_player).index
     new_index = @board.compute_destination_index(current_index + num_spaces)
     @player_states << PlayerState.new(next_player, new_index)
@@ -21,16 +23,10 @@ class Game
   end
 
   def next_player
-    @player_states[-player_count].player
+    @rules.next_player(@player_states)
   end
 
   def current_state(player)
     @player_states.select { |p_state| p_state.player == player }.last
-  end
-
-  private
-
-  def player_count
-    @player_count ||= @player_states.uniq(&:player).size
   end
 end
