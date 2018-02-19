@@ -1,7 +1,11 @@
 require_relative 'rules_interface'
 
 class StandardRules < RulesInterface
-  def roll_is_valid(roll_num)
-    (1..6).cover?(roll_num)
+  def initialize(die)
+    @die = die
+  end
+
+  def roll_dice
+    @die.roll
   end
 end
