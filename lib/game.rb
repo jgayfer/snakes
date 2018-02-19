@@ -13,7 +13,7 @@ class Game
     roll_num = @rules.roll_dice
     current_index = current_state(next_player).index
     new_index = @board.compute_destination_index(current_index + roll_num)
-    @move_history << PlayerState.new(next_player, new_index)
+    @move_history << PlayerState.new(next_player, new_index, roll_num)
   end
 
   def last_move_was_a_win
