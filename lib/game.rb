@@ -28,19 +28,21 @@ class Game
     @rules.next_player(@player_states)
   end
 
-  def current_state(player)
-    @player_states.select { |p_state| p_state.player == player }.last
-  end
-
   def players_at_index(index)
     current_states_of_players.select { |p_state| p_state.index == index }.map(&:player)
   end
+
+  def players
+    @player_states.uniq(&:player)
+  end
+
+  private
 
   def current_states_of_players
     @player_states.last(players.count)
   end
 
-  def players
-    @player_states.uniq(&:player)
+  def current_state(player)
+    @player_states.select { |p_state| p_state.player == player }.last
   end
 end
