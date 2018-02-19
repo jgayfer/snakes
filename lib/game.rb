@@ -1,6 +1,8 @@
 require_relative 'player_state'
 
 class Game
+  attr_reader :board
+
   def initialize(board, player_states, rules)
     @board = board
     @player_states = player_states
@@ -28,5 +30,17 @@ class Game
 
   def current_state(player)
     @player_states.select { |p_state| p_state.player == player }.last
+  end
+
+  def players_at_index(index)
+    current_states_of_players.select { |p_state| p_state.index == index }.map(&:player)
+  end
+
+  def current_states_of_players
+    @player_states.last(players.count)
+  end
+
+  def players
+    @player_states.uniq(&:player)
   end
 end
