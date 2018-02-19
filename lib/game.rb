@@ -29,7 +29,7 @@ class Game
   end
 
   def players_at_index(index)
-    current_states_of_players.select { |p_state| p_state.index == index }.map(&:player)
+    current_player_states.select { |p_state| p_state.index == index }.map(&:player)
   end
 
   def players
@@ -38,7 +38,7 @@ class Game
 
   private
 
-  def current_states_of_players
+  def current_player_states
     @player_states.last(players.count)
   end
 
