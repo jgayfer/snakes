@@ -9,10 +9,10 @@ class Game
     @rules = rules
   end
 
-  def move_next_player(num_spaces)
-    return puts 'Invalid roll' unless @rules.roll_is_valid(num_spaces)
+  def move_next_player
+    roll_num = @rules.roll_dice
     current_index = current_state(next_player).index
-    new_index = @board.compute_destination_index(current_index + num_spaces)
+    new_index = @board.compute_destination_index(current_index + roll_num)
     @move_history << PlayerState.new(next_player, new_index)
   end
 
