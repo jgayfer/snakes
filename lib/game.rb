@@ -5,7 +5,7 @@ class Game
 
   def initialize(board, player_states, rules)
     @board = board
-    @player_states = player_states
+    @move_history = player_states
     @rules = rules
   end
 
@@ -13,15 +13,15 @@ class Game
     return puts 'Invalid roll' unless @rules.roll_is_valid(num_spaces)
     current_index = current_state(next_player).index
     new_index = @board.compute_destination_index(current_index + num_spaces)
-    @player_states << PlayerState.new(next_player, new_index)
+    @move_history << PlayerState.new(next_player, new_index)
   end
 
   def last_move_was_a_win
-    @player_states.last.index == @board.winning_index
+    @move_history.last.index == @board.winning_index
   end
 
   def previous_player
-    @player_states.last.player
+    @move_history.last.player
   end
 
   def next_player
@@ -33,16 +33,16 @@ class Game
   end
 
   def players
-    @player_states.uniq(&:player)
+    @move_history.uniq(&:player)
   end
 
   private
 
   def current_player_states
-    @player_states.last(players.count)
+    @move_history.last(players.count)
   end
 
   def current_state(player)
-    @player_states.select { |p_state| p_state.player == player }.last
+    @move_history.select { |p_state| p_state.player == player }.last
   end
 end
