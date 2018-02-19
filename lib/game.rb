@@ -3,9 +3,9 @@ require_relative 'player_state'
 class Game
   attr_reader :board
 
-  def initialize(board, player_states, rules)
+  def initialize(board, initial_player_states, rules)
     @board = board
-    @move_history = player_states
+    @move_history = initial_player_states
     @rules = rules
   end
 
