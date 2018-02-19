@@ -8,7 +8,7 @@ class Board
 
   def compute_destination_index(start_index)
     transition = @transitions.find { |t| t.start_index == start_index }
-    new_index = transition ? transitions.dest_index : start_index
+    new_index = transition ? transition.dest_index : start_index
     new_index > @winning_index ? @winning_index : new_index
   end
 end
