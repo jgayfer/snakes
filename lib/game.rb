@@ -20,6 +20,10 @@ class Game
     @move_history.last.index == @board.winning_index
   end
 
+  def last_roll(player)
+    current_state(player).last_roll
+  end
+
   def previous_player
     @move_history.last.player
   end
