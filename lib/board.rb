@@ -1,7 +1,8 @@
 class Board
-  attr_reader :winning_index
+  attr_reader :winning_index, :dimension, :transitions
 
   def initialize(transitions, dimension)
+    @dimension = dimension
     @winning_index = dimension**2 - 1
     @transitions = transitions
   end
