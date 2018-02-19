@@ -1,8 +1,9 @@
 class PlayerState
-  attr_reader :player, :index
+  attr_reader :player, :index, :last_roll
 
-  def initialize(player, index = 0)
+  def initialize(player, index = 0, last_roll = 0)
     @player = player
     @index = index
+    @last_roll = last_roll
   end
 end
