@@ -25,7 +25,7 @@ class Game
   end
 
   def next_player
-    @rules.next_player(@player_states)
+    current_player_states.first.player
   end
 
   def players_at_index(index)
