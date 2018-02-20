@@ -1,8 +1,6 @@
-require_relative 'rules_interface'
-
 module Snakes
   module Rules
-    class StandardRules < RulesInterface
+    class StandardRules
       def initialize(die)
         @die = die
       end
