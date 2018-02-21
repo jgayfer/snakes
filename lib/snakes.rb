@@ -1,4 +1,3 @@
-require_relative 'snakes/rules/standard_rules'
 require_relative 'snakes/player'
 require_relative 'snakes/player_state'
 require_relative 'snakes/transition'
@@ -16,9 +15,9 @@ module Snakes
     end
 
     def standard_game(player_names, die_sides = 6)
-      rules = Snakes::Rules::StandardRules.new(Die.new(die_sides))
+      die = Die.new(die_sides)
       board = Snakes::DefaultBoards::Standard10x10.new
-      Game.new(board, initial_player_states(player_names), rules)
+      Game.new(board, initial_player_states(player_names), die)
     end
 
     private
