@@ -10,6 +10,8 @@ module Snakes
           Board.new(transitions, STANDARD_BOARD_DIMENSION)
         end
 
+        private
+
         def transitions
           ladders = [Transition.new(1, 37),
                      Transition.new(20, 41),
