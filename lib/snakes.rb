@@ -9,11 +9,6 @@ require_relative 'snakes/default_boards/standard_10x10'
 
 module Snakes
   class << self
-    def print(game)
-      formatter = TextFormatter.new(game)
-      puts formatter.board_text
-    end
-
     def standard_game(player_names, die_sides = 6)
       die = Die.new(die_sides)
       board = Snakes::DefaultBoards::Standard10x10.new

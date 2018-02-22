@@ -1,10 +1,11 @@
 require_relative '../lib/snakes'
 
 game = Snakes.standard_game(%w[James Sebastian])
+text_formatter = Snakes::TextFormatter.new(game)
 winner = nil
 
 until winner
-  Snakes.print(game)
+  puts text_formatter.board_text
   player = game.next_player
   print "It's your turn #{player}. Press any key to roll the dice: "
   gets.chomp
@@ -13,5 +14,5 @@ until winner
   winner = player if game.win_condition(player)
 end
 
-Snakes.print(game)
+puts text_formatter.text
 puts "#{player} wins!"
