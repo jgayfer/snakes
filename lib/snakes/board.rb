@@ -1,17 +1,20 @@
 module Snakes
   class Board
-    attr_reader :winning_index, :dimension, :transitions
+    attr_reader :dimension, :transitions
 
     def initialize(transitions, dimension)
       @dimension = dimension
-      @winning_index = dimension**2 - 1
       @transitions = transitions
     end
 
-    def compute_destination_index(start_index)
-      transition = @transitions.find { |t| t.start_index == start_index }
-      new_index = transition ? transition.dest_index : start_index
-      new_index > @winning_index ? @winning_index : new_index
+    def compute_destination(initial_position)
+      transition = @transitions.find { |t| t.start_index == initial_position }
+      new_position = transition&.dest_index || initial_position
+      [new_position, winning_index].min
+    end
+
+    def winning_index
+      @dimension**2 - 1
     end
   end
 end

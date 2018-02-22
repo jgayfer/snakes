@@ -13,7 +13,7 @@ module Snakes
     def move_next_player
       roll_num = @die.roll
       current_index = current_state(next_player).index
-      new_index = @board.compute_destination_index(current_index + roll_num)
+      new_index = @board.compute_destination(current_index + roll_num)
       @move_history << PlayerState.new(next_player, new_index, roll_num)
     end
 
