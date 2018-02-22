@@ -9,7 +9,7 @@ module Snakes
       (0..(dimension - 1)).reverse_each do |row_num|
         row_strings << row_str(row_num)
       end
-      row_strings.join("\n\n").prepend("\n") << "\n\n"
+      row_strings.join("\n\n")
     end
 
     private
