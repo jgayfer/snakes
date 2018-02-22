@@ -4,14 +4,14 @@ require_relative 'snakes/transition'
 require_relative 'snakes/board'
 require_relative 'snakes/game'
 require_relative 'snakes/die'
-require_relative 'snakes/console_printer'
+require_relative 'snakes/text_formatter'
 require_relative 'snakes/default_boards/standard_10x10'
 
 module Snakes
   class << self
     def print(game)
-      printer = ConsolePrinter.new(game)
-      printer.display_board
+      formatter = TextFormatter.new(game)
+      puts formatter.board_text
     end
 
     def standard_game(player_names, die_sides = 6)
