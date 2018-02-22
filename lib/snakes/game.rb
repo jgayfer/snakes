@@ -17,8 +17,12 @@ module Snakes
       @move_history << PlayerState.new(next_player, new_index, roll_num)
     end
 
-    def last_move_was_a_win
-      @move_history.last.index == @board.winning_index
+    def win_condition(player)
+      position(player) == @board.winning_index
+    end
+
+    def position(player)
+      current_state(player).index
     end
 
     def last_roll(player)
@@ -38,7 +42,7 @@ module Snakes
     end
 
     def players
-      @move_history.uniq(&:player)
+      @move_history.uniq(&:player).map(&:player)
     end
 
     private
