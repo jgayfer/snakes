@@ -6,6 +6,7 @@ require_relative 'snakes/game'
 require_relative 'snakes/die'
 require_relative 'snakes/text_formatter'
 require_relative 'snakes/default_boards/standard_10x10'
+require_relative 'snakes/version'
 
 module Snakes
   class << self
