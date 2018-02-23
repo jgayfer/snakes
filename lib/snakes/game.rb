@@ -1,6 +1,9 @@
 require_relative 'player_state'
 
 module Snakes
+  # The game class is responsible for keeping track of the state of the game.
+  # Moving the next player will advance the state of the game, while the rest of
+  # the methods provide various information about the current state of the game.
   class Game
     attr_reader :board
 

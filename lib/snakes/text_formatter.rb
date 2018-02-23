@@ -1,4 +1,6 @@
 module Snakes
+  # This class is responsible for creating a textual representation of a game of
+  # snakes and ladders.
   class TextFormatter
     def initialize(game)
       @game = game

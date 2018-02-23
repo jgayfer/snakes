@@ -4,6 +4,9 @@ require_relative '../board'
 module Snakes
   module DefaultBoards
     STANDARD_BOARD_DIMENSION = 10
+    # While it's possible to setup a custom board, chances are that most users won't
+    # care about doing so. This class represents a predefined standard game board for
+    # ease of setup.
     class Standard10x10
       class << self
         def new

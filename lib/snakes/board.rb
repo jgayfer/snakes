@@ -1,4 +1,6 @@
 module Snakes
+  # The board is a calculator for determing where a player should end up. It doesn't contain
+  # any information about the state of the game; it only contains info about the board itself.
   class Board
     attr_reader :dimension, :transitions
 

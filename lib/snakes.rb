@@ -8,6 +8,9 @@ require_relative 'snakes/text_formatter'
 require_relative 'snakes/default_boards/standard_10x10'
 require_relative 'snakes/version'
 
+# While not explicitly neccessary, this code provides a helper method
+# for creating a new game of snakes and ladders. This can be done
+# manually, but it can be tedious if the desired outcome is a standard game.
 module Snakes
   class << self
     def standard_game(player_names, die_sides = 6)
