@@ -1,3 +1,4 @@
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'simplecov'
 
 SimpleCov.start do
@@ -12,4 +13,4 @@ def fixture_path(file)
   File.join(File.expand_path('../fixtures', __FILE__), file)
 end
 
-require_relative '../lib/snakes'
+require 'snakes'

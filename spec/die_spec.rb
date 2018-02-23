@@ -1,6 +1,3 @@
-require_relative 'spec_helper.rb'
-require_relative '../lib/snakes'
-
 RSpec.describe Snakes::Die do
   let(:die_sides) { 6 }
   let(:die) { Snakes::Die.new(die_sides) }

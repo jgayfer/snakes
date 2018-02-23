@@ -1,6 +1,3 @@
-require_relative '../lib/snakes'
-require_relative 'spec_helper'
-
 RSpec.describe Snakes::TextFormatter do
   let(:die) { Snakes::Die.new(1) }
   let(:snake) { Snakes::Transition.new(40, 65) }

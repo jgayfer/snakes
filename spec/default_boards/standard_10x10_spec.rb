@@ -1,6 +1,3 @@
-require_relative '../spec_helper'
-require_relative '../../lib/snakes'
-
 RSpec.describe Snakes::DefaultBoards::Standard10x10 do
   let(:board) { Snakes::DefaultBoards::Standard10x10.new }
 

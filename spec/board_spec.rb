@@ -1,6 +1,3 @@
-require_relative 'spec_helper.rb'
-require_relative '../lib/snakes'
-
 RSpec.describe Snakes::Board do
   let(:dimension) { 10 }
   let(:empty_space) { 5 }

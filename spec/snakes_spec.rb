@@ -1,6 +1,3 @@
-require_relative '../lib/snakes'
-require_relative 'spec_helper'
-
 RSpec.describe Snakes do
   let(:player_names) { %w['James Sebastian'] }
   let(:die_sides) { 1 }

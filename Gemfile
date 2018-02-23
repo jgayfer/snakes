@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'rake'
-gem 'rspec'
-gem 'simplecov'
+# Specify your gem's dependencies in snakes.gemspec
+gemspec

@@ -1,6 +1,3 @@
-require_relative 'spec_helper'
-require_relative '../lib/snakes'
-
 RSpec.describe Snakes::Game do
   let(:die_roll) { 1 }
   let(:starting_position) { 0 }

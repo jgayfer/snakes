@@ -1,5 +1,3 @@
-require_relative '../lib/snakes'
-
 RSpec.describe Snakes::Player do
   let(:player_name) { 'Jimbo' }
   let(:player) { Snakes::Player.new(player_name) }

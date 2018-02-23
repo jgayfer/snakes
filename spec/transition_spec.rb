@@ -1,6 +1,3 @@
-require_relative 'spec_helper.rb'
-require_relative '../lib/snakes'
-
 RSpec.describe Snakes::Transition do
   let(:start_num) { 24 }
   let(:end_num) { 42 }
