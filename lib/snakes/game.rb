@@ -41,7 +41,9 @@ module Snakes
     end
 
     def players_at_index(index)
-      current_player_states.select { |p_state| p_state.index == index }.map(&:player)
+      current_player_states.select do |player_state|
+        player_state.index == index
+      end.map(&:player)
     end
 
     def players
