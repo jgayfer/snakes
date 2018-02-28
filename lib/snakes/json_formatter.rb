@@ -44,6 +44,7 @@ module Snakes
       hash = {}
       hash['cells'] = cell_list
       hash['dimension'] = @game.board.dimension
+      hash['winning_position'] = @game.board.winning_index + 1
       hash
     end
 
