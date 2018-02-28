@@ -32,12 +32,19 @@ module Snakes
       players
     end
 
-    def board_hash
+    def cell_list
       cells = []
       (dimension**2).times do |index|
         cells << cell_hash(index)
       end
       cells
+    end
+
+    def board_hash
+      hash = {}
+      hash['cells'] = cell_list
+      hash['dimension'] = @game.board.dimension
+      hash
     end
 
     def cell_hash(index)
