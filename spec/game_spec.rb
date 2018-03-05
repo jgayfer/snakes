@@ -5,6 +5,7 @@ RSpec.describe Snakes::Game do
   let(:die) { Snakes::Die.new(1) }
   let(:player1) { Snakes::Player.new('pants') }
   let(:player2) { Snakes::Player.new('shirt') }
+  let(:new_player) { Snakes::Player.new('newbie') }
   let(:player1_state) { Snakes::PlayerState.new(player1) }
   let(:player2_state) { Snakes::PlayerState.new(player2) }
   let(:winning_player_state) do
@@ -17,6 +18,14 @@ RSpec.describe Snakes::Game do
   describe '#initialize' do
     subject { new_game }
     it { is_expected.to be_a Snakes::Game }
+  end
+
+  describe '#add_player' do
+    subject { new_game }
+    before { new_game.add_player(new_player) }
+    it 'adds a new player to the game' do
+      expect(subject.previous_player).to match new_player
+    end
   end
 
   describe '#move_next_player' do

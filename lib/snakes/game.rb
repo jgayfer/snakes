@@ -13,6 +13,10 @@ module Snakes
       @die = die
     end
 
+    def add_player(player)
+      @move_history << PlayerState.new(player)
+    end
+
     def move_next_player
       roll_num = @die.roll
       current_index = current_state(next_player).index
